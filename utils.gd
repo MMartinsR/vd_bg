@@ -1,28 +1,33 @@
 extends Reference
 class_name Utils
 
-static func create_instance(number):
+static func create_ball_instance(number, isSmall):
 	var ball_instance
+	var path = "res://scenes/"
 		# instance our balls according to color
 	if number in range(1, 11):
-		ball_instance = preload("res://scenes/red_ball.tscn")
+		path += "red"
 	elif number in range(11, 21):
-		ball_instance = preload("res://scenes/blue_ball.tscn")
+		path += "blue"
 	elif number in range(21, 31):
-		ball_instance = preload("res://scenes/pink_ball.tscn")
+		path += "pink"
 	elif number in range(31, 41):
-		ball_instance = preload("res://scenes/green_ball.tscn")
+		path += "green"
 	elif number in range(41, 51):
-		ball_instance = preload("res://scenes/yellow_ball.tscn")
+		path += "yellow"
 	else:
-		ball_instance = preload("res://scenes/purple_ball.tscn")
+		path += "purple"
+	if isSmall:
+		path += "_board"
+	path += "_ball.tscn"
+	ball_instance = load(path)
 	return ball_instance.instance()
 
  # this function returns an array of n shuffled numbers
 static func generate_random_numbers(from, to, size):
 	randomize()
 	var arr = []
-	for i in range(from, to):
+	for i in range(from, to + 1):
 		arr.append(i)
 	arr.shuffle()
 	arr.resize(size)

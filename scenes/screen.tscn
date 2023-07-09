@@ -6,11 +6,17 @@
 [node name="screen" type="Node2D"]
 script = ExtResource( 3 )
 start_from = 1
-end_at = 60
-extraction_balls_quantity = 5
-x_start = 150
-y_start = 550
+end_at = 45
+column = 5
+line = 3
+x_start = 100
+y_start = 500
 offset = 75
+board_column = 10
+board_line = 3
+board_x_start = 130
+board_y_start = 120
+board_offset = 50
 extraction_balls_timer = 2
 inicial_position = Vector2( 650, 400 )
 

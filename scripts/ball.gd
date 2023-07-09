@@ -7,11 +7,15 @@ var callback
 func _ready():
 	pass
 
-func _process(delta):
-	pass
-
 func place_number(number):
 	$ball_number.text = str(number)
+
+func play_sound(play):
+	if play:
+		$success_sound.play()
+	else:
+		$fail_sound.play()
+	
 
 # this is a helper function that allows a callback of a specified function
 func receive_callback(callback):

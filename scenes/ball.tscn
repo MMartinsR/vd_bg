@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/ball.gd" type="Script" id=1]
+[ext_resource path="res://assets/sounds/successfull_match.wav" type="AudioStream" id=2]
+[ext_resource path="res://assets/sounds/no_match.wav" type="AudioStream" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "animated_ball"
@@ -55,7 +57,7 @@ tracks/3/keys = {
 }
 
 [node name="ball" type="Node2D"]
-position = Vector2( 650, 470 )
+position = Vector2( 650, 400 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -83,5 +85,11 @@ __meta__ = {
 autoplay = "animated_ball"
 playback_speed = 0.8
 anims/animated_ball = SubResource( 1 )
+
+[node name="success_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+
+[node name="fail_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
 
 [connection signal="animation_finished" from="animation_ball" to="." method="_on_animation_ball_animation_finished"]
