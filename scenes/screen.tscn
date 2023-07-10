@@ -1,29 +1,50 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/images/background.jpg" type="Texture" id=1]
+[ext_resource path="res://assets/fonts/BagelFatOne-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://scripts/screen.gd" type="Script" id=3]
 
+[sub_resource type="DynamicFont" id=1]
+size = 55
+outline_size = 3
+outline_color = Color( 0.419608, 0.0666667, 0.709804, 1 )
+font_data = ExtResource( 2 )
+
 [node name="screen" type="Node2D"]
+pause_mode = 2
 script = ExtResource( 3 )
-start_from = 1
-end_at = 45
-column = 5
-line = 3
-x_start = 100
-y_start = 500
-offset = 75
-board_column = 10
-board_line = 3
-board_x_start = 130
-board_y_start = 120
-board_offset = 50
-extraction_balls_timer = 2
+board_column = 6
+board_line = 5
+board_x_start = 170
+board_y_start = 60
 inicial_position = Vector2( 650, 400 )
 
 [node name="background" type="TextureRect" parent="."]
 margin_right = 700.0
 margin_bottom = 900.0
+focus_mode = 1
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="button" type="Node2D" parent="."]
+position = Vector2( 300, 750 )
+z_index = 1
+
+[node name="button_control" type="Button" parent="button"]
+margin_left = -136.0
+margin_top = -43.0
+margin_right = 136.0
+margin_bottom = 43.0
+rect_pivot_offset = Vector2( 135.859, 43.2749 )
+focus_mode = 0
+custom_fonts/font = SubResource( 1 )
+enabled_focus_mode = 0
+text = "Pause"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_down" from="button/button_control" to="." method="_on_button_control_button_down"]
