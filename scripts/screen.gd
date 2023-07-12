@@ -55,7 +55,6 @@ export (bool) var prize_diagonal = false
 func _ready():
 	spawn_board()
 	spawn_card()
-	#check_prizes()
 	$prize/prize_label.visible = false
 	
 
@@ -92,14 +91,12 @@ func check_drawn_ball():
 # this function generates the numbers for the balls that will be drawn
 func generate_ball_numbers():
 	drawn_balls = Utils.generate_random_numbers(first_number, last_number, board_column * board_line)
-	print("Drawn balls " + str(drawn_balls))
 
 # this functions generates the card numbers
 func generate_card_numbers():
 	card_numbers = Utils.generate_random_numbers(first_number, last_number, card_column * card_line)
 	card_numbers.sort()
-	print("Card numbers " + str(card_numbers))
-	
+
 # this function starts the board
 func spawn_board():
 	generate_ball_numbers()
