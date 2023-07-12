@@ -8,8 +8,6 @@ var number_count = 0
 func _ready():
 	pass
 
-func _process(delta):
-	pass
 
 # spawn card numbers
 func spawn_numbers(x_start, y_start, column, line, offset, numbers):

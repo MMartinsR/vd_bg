@@ -5,9 +5,6 @@ const PRE_CARD = preload("res://scenes/card.tscn")
 # reference to our board
 const PRE_BOARD = preload("res://scenes/balls_extracted_board.tscn")
 
-# reference to our sounds
-onready var audio_success = $"../success_sound"
-
 # Balls extraction -> numbers generation
 # range of numbers to be generated 
 export (int) var first_number = 1
@@ -58,8 +55,6 @@ func _ready():
 	$prize/prize_label.visible = false
 	
 
-func _process(delta):
-	pass
 
 # this function is responsible of spawning the drawn balls
 func spawn_ball():
@@ -151,7 +146,6 @@ func check_prizes():
 		print_prize(label_prize, 18)
 
 func change_font_size(newSize):
-	var object = $prize/prize_label
 	var font = $prize/prize_label.get("custom_fonts/font")
 	font.size = newSize
 	$prize/prize_label.add_font_override("custom_fonts/font", font)
