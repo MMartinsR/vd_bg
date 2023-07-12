@@ -1,9 +1,188 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/balls_extracted_board.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/BagelFatOne-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/images/board.png" type="Texture" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 40
+outline_size = 3
+outline_color = Color( 0.658824, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+outline_size = 3
+outline_color = Color( 0.647059, 0.639216, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 40
+outline_size = 3
+outline_color = Color( 0.713726, 0, 0.737255, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 40
+outline_size = 3
+outline_color = Color( 0.223529, 0, 0.670588, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 40
+outline_size = 3
+outline_color = Color( 0, 0.0705882, 0.631373, 1 )
+font_data = ExtResource( 2 )
 
 [node name="balls_extracted_board" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="board_background" type="Sprite" parent="."]
-position = Vector2( 300, 140 )
+position = Vector2( 300, 165 )
+scale = Vector2( 0.7, 0.6 )
+texture = ExtResource( 3 )
+
+[node name="b" type="Label" parent="."]
+margin_left = 38.7492
+margin_top = 34.2407
+margin_right = 71.7492
+margin_bottom = 93.2407
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "B"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="i" type="Label" parent="."]
+margin_left = 38.7492
+margin_top = 80.2407
+margin_right = 71.7492
+margin_bottom = 139.241
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 0.984314, 0, 1 )
+text = "I"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="n" type="Label" parent="."]
+margin_left = 37.7492
+margin_top = 126.241
+margin_right = 71.7492
+margin_bottom = 185.241
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.921569, 0, 1, 1 )
+text = "N"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="g" type="Label" parent="."]
+margin_left = 36.9594
+margin_top = 171.305
+margin_right = 72.9594
+margin_bottom = 230.305
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.360784, 0, 1, 1 )
+text = "G"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="o" type="Label" parent="."]
+margin_left = 37.2068
+margin_top = 216.255
+margin_right = 73.2068
+margin_bottom = 275.255
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0.0392157, 1, 1 )
+text = "O"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="b2" type="Label" parent="."]
+margin_left = 521.708
+margin_top = 33.739
+margin_right = 554.708
+margin_bottom = 92.739
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "B"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="i2" type="Label" parent="."]
+margin_left = 521.708
+margin_top = 79.739
+margin_right = 554.708
+margin_bottom = 138.739
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 0.984314, 0, 1 )
+text = "I"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="n2" type="Label" parent="."]
+margin_left = 520.708
+margin_top = 125.739
+margin_right = 554.708
+margin_bottom = 184.739
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.921569, 0, 1, 1 )
+text = "N"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="g2" type="Label" parent="."]
+margin_left = 519.919
+margin_top = 170.804
+margin_right = 555.919
+margin_bottom = 229.804
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.360784, 0, 1, 1 )
+text = "G"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="o2" type="Label" parent="."]
+margin_left = 520.166
+margin_top = 215.753
+margin_right = 556.166
+margin_bottom = 274.753
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0.0392157, 1, 1 )
+text = "O"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="drawn_balls_background" type="Sprite" parent="."]
+position = Vector2( 300, 400 )
+scale = Vector2( 0.7, 0.18 )
+texture = ExtResource( 3 )

@@ -1,12 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://assets/images/card_back.png" type="Texture" id=1]
 [ext_resource path="res://scripts/card.gd" type="Script" id=2]
 
 [node name="card" type="Node2D"]
 script = ExtResource( 2 )
-last_number = 30
 
 [node name="card_tx" type="Sprite" parent="."]
 position = Vector2( 299.702, 627.644 )
-texture = ExtResource( 1 )

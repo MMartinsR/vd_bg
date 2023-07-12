@@ -40,6 +40,12 @@ static func array_to_pixel_convertion(x_start, y_start, column, row, offset):
 	var new_y = y_start + offset * column
 	return Vector2(new_x, new_y)
 
+static func check_prizes_bingo(card_numbers, drawn_balls):
+	for x in card_numbers.size():
+		if !drawn_balls.has(card_numbers[x]):
+			return false
+	return true
+
 static func check_prizes_line(line, column, card_numbers, drawn_balls):
 	var not_match = 0
 	for x in line:
@@ -58,4 +64,22 @@ static func check_prizes_column(line, column, card_numbers, drawn_balls):
 			if !drawn_balls.has(card_numbers[column * y + x]):
 				not_match += 1
 				break
+	return not_match
+
+static func check_prizes_diagonal(line, card_numbers, drawn_balls):
+	var not_match = 0
+	var diagonal_left = true
+	var diagonal_right = true
+	for x in line:
+		# if there's no match between drawn ball and card number when width and height position match(diagonal) not_match receives 1 and diagonals left is now false 
+		if !drawn_balls.has(card_numbers[line * x + x]) and diagonal_left: 
+			diagonal_left = false
+			not_match += 1
+		# if there's no match between drawn ball and card number when height and width position match(diagonal) not_match receives 1 and diagonals right is now false 
+		if !drawn_balls.has(card_numbers[line * x + (line - 1 - x)]) and diagonal_right:
+			diagonal_right = false
+			not_match += 1
+		# if both are false, then there's no prize on diagonals
+		if !diagonal_left and !diagonal_right:
+			break
 	return not_match

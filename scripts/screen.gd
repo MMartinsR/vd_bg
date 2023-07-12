@@ -14,8 +14,8 @@ export (int) var first_number = 1
 export (int) var last_number = 60
 
 # Card size
-export (int) var column = 5
-export (int) var line = 3
+export (int) var card_column = 5
+export (int) var card_line = 3
 # Card position
 export (int) var x_start = 150
 export (int) var y_start = 500
@@ -40,18 +40,23 @@ var ball_instance
 var drawn_balls = []
 
 # Extracted balls
-export (int) var drawn_balls_timer = 3
 export var inicial_position = Vector2.ZERO
 var count = 0
 
 var isSmall = false
 var isPaused = false
 
+# Prizes choices
+var prize_bingo = false
+export (bool) var prize_column = false
+export (bool) var prize_line = false
+export (bool) var prize_diagonal = false
+
 func _ready():
 	spawn_board()
 	spawn_card()
-	check_prizes()
-	$button/button_control.text = "Pause"
+	#check_prizes()
+	$prize/prize_label.visible = false
 	
 
 func _process(delta):
@@ -91,7 +96,7 @@ func generate_ball_numbers():
 
 # this functions generates the card numbers
 func generate_card_numbers():
-	card_numbers = Utils.generate_random_numbers(first_number, last_number, column * line)
+	card_numbers = Utils.generate_random_numbers(first_number, last_number, card_column * card_line)
 	card_numbers.sort()
 	print("Card numbers " + str(card_numbers))
 	
@@ -108,31 +113,57 @@ func spawn_board():
 func spawn_card():
 	generate_card_numbers()
 	card_instance = PRE_CARD.instance()
-	card_instance.spawn_numbers(x_start, y_start, column, line, offset, card_numbers)
+	card_instance.spawn_numbers(x_start, y_start, card_column, card_line, offset, card_numbers)
 	add_child(card_instance)
 
 # this functions validates if the player won any prize
 func check_prizes():
-	var isLines = Utils.check_prizes_line(line, column, card_numbers, drawn_balls)
-	var isColumns = Utils.check_prizes_column(line, column, card_numbers, drawn_balls)
+	var prizes_array = []
+	var label_prize
 	
-	# if isLines is zero, it means that the player got all numbers, so its BINGO
-	if isLines == 0 and isColumns == 0:
-		print("BINGO")
-	# if isLines equals the number of lines, that means the player won nothing
-	elif isLines == line and isColumns == column:
-		print("NOTHING")
-	# else, it shows how many lines the player hit
+	prize_bingo = Utils.check_prizes_bingo(card_numbers, drawn_balls)
+	if prize_bingo:
+		label_prize = "BINGO!!"
+		print_prize(label_prize, 40)
+		return
+	
+	if prize_line:
+		var isLines = Utils.check_prizes_line(card_line, card_column, card_numbers, drawn_balls)
+		if isLines != card_line:
+			var lines_quantity = card_line - isLines
+			prizes_array.append(str(lines_quantity) + " LINE(S) ")
+			
+	if prize_column:
+		var isColumns = Utils.check_prizes_column(card_line, card_column, card_numbers, drawn_balls)
+		if isColumns != card_column:
+			var column_quantity = card_column - isColumns
+			prizes_array.append(str(column_quantity) + " COLUMN(S) ")
+			
+	if prize_diagonal and card_line == card_column:
+		var isDiagonals = Utils.check_prizes_diagonal(card_line, card_numbers, drawn_balls)
+		if isDiagonals < 2:
+			prizes_array.append(str(2 - isDiagonals) + " DIAGONAL(S) ")
+	
+	if prizes_array.empty():
+		label_prize = "NO PRIZES FOR YOU, TRY AGAIN"
+		print_prize(label_prize, 30)
 	else:
-		if isLines != line:
-			var lines_quantity = line - isLines
-			print("LINE's Won " + str(lines_quantity))
-		if isColumns != column:
-			var column_quantity = column - isColumns
-			print("COLUMN's Won " + str(column_quantity))
+		label_prize = "CONGRATULATIONS!! YOU WON \n" 
+		for i in prizes_array.size():
+			label_prize += prizes_array[i]
+		print_prize(label_prize, 18)
+
+func change_font_size(newSize):
+	var object = $prize/prize_label
+	var font = $prize/prize_label.get("custom_fonts/font")
+	font.size = newSize
+	$prize/prize_label.add_font_override("custom_fonts/font", font)
+
+func print_prize(text, newSize):
+	change_font_size(newSize)
+	$prize/prize_label.text = text
+	$prize/prize_label.visible = true
 	$button/button_control.text = "Play Again"
-
-
 
 func _on_button_control_button_down():
 	# if the draw is still happening, it should pause the game

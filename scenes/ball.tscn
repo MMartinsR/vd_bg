@@ -15,7 +15,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 650, 400 ), Vector2( 150, 400 ) ]
+"values": [ Vector2( 510, 400 ), Vector2( 90, 400 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:rotation_degrees")
@@ -55,12 +55,11 @@ tracks/3/keys = {
 }
 
 [node name="ball" type="Node2D"]
-position = Vector2( 650, 400 )
+position = Vector2( 510, 400 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-speed = 200
 
 [node name="ball_tx" type="Sprite" parent="."]
 scale = Vector2( 0.1, 0.1 )
@@ -81,7 +80,7 @@ __meta__ = {
 
 [node name="animation_ball" type="AnimationPlayer" parent="."]
 autoplay = "animated_ball"
-playback_speed = 5.0
+playback_speed = 0.8
 anims/animated_ball = SubResource( 1 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

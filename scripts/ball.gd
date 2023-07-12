@@ -1,18 +1,20 @@
 extends Node2D
 
 export (String) var color
-export (int) var speed
+onready var animation = $animation_ball
+
 var callback
 var isSucessSong = false
-var isPlayedSong = false
 
 func _ready():
+	animation.playback_speed = 0.8
 	pass
 
 func place_number(number, isSucessSong):
 	$ball_number.text = str(number)
 	self.isSucessSong = isSucessSong
 
+# this function load both songs and use just one AudioStreamPlayer to play them
 func play_song():
 	var path = "res://assets/sounds/"
 	if isSucessSong:
@@ -20,7 +22,6 @@ func play_song():
 	else:
 		path += "no_match.mp3"
 	var file = File.new()
-	isPlayedSong = true
 	
 	if file.file_exists(path):
 		file.open(path, file.READ)
@@ -39,12 +40,12 @@ func receive_callback(callback):
 func _on_animation_ball_animation_finished(anim_name):
 	play_song()
 	callback.call_func()
-	#queue_free()
 
-
+# when the sound is finished, the ball instance is removed from memory
 func _on_fail_sound_finished():
-	queue_free()
-	
+	queue_free()  # ball instance
+
+# this function let us pause the animation
 func pause(isPaused):
 	var animation_ball = get_node("animation_ball")
 	if isPaused:
