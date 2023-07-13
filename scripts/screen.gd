@@ -86,13 +86,11 @@ func check_drawn_ball():
 # this function generates the numbers for the balls that will be drawn
 func generate_ball_numbers():
 	drawn_balls = Utils.generate_random_numbers(first_number, last_number, board_column * board_line)
-	drawn_balls[0] = 60
 
 # this functions generates the card numbers
 func generate_card_numbers():
 	card_numbers = Utils.generate_random_numbers(first_number, last_number, card_column * card_line)
 	card_numbers.sort()
-	card_numbers[14] = 60
 
 # this function starts the board
 func spawn_board():
